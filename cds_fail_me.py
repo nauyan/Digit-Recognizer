@@ -1,5 +1,3 @@
-import numpy as np
-
-
-
-print("hello world")
+import os
+def read(path):
+    return open(path).read()
