@@ -1,6 +1,6 @@
 import unittest
 
-from metrics import accuracy, precision
+from metrics import accuracy, precision, recall
 
 
 class TestAccuracy(unittest.TestCase):
@@ -22,6 +22,20 @@ class TestPrecision(unittest.TestCase):
     def test_custom_positive_label(self):
         self.assertEqual(
             precision(["cat", "dog", "cat"], ["cat", "cat", "dog"], positive="cat"),
+            0.5,
+        )
+
+
+class TestRecall(unittest.TestCase):
+    def test_partial_recall(self):
+        # Truly positive at indices 0, 1, 3; only 0 and 3 were predicted positive.
+        self.assertAlmostEqual(
+            recall([1, 1, 0, 1], [1, 0, 1, 1]), 2 / 3
+        )
+
+    def test_custom_positive_label(self):
+        self.assertEqual(
+            recall(["cat", "dog", "cat"], ["cat", "cat", "dog"], positive="cat"),
             0.5,
         )
 
