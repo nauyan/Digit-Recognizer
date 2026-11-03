@@ -40,3 +40,7 @@ def precision(y_true, y_pred, positive=1):
 
     true_positives = sum(1 for t in predicted_positive if t == positive)
     return true_positives / len(predicted_positive)
+
+
+def error_rate(y_true, y_pred):
+    return 1 - accuracy(y_true, y_pred)
